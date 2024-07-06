@@ -3,6 +3,7 @@ const app = express();
 const db = require('./db');
 const Person = require('./models/person');
 const menu = require('./models/menu');
+require('dotenv').config();
 
 //it is a middleware to take the various forms of data from the client and serve to the database
 //it is capable to take various form of data
@@ -10,6 +11,9 @@ const menu = require('./models/menu');
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
+
+const PORT = process.env.PORT || 3000;
+
 
 app.get('/', function(req, res){
     res.send('welcome to my hotel... How i can help you? We have list of menu');
@@ -62,7 +66,8 @@ app.get('/person', async(req, res)=>{
 })
 
 
+
 //use to host in local system.
-app.listen(3000,()=>{
+app.listen(PORT,()=>{
     console.log('server is running;')
 });
